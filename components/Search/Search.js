@@ -1,25 +1,20 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import styles from '../../styles/Search.module.scss';
-
-const getWeather = async (city) => {
-  const response = await fetch(
-    `http://localhost:3000/api/weather?city=${city}`
-  );
-  const data = await response.json();
-  console.log(data);
-};
+import { fetchWeather } from '../../store/weatherSlice';
 
 const Search = () => {
-  const [value, setValue] = useState('');
+  const [city, setCity] = useState('');
+  const dispatch = useDispatch();
 
   const inputHandler = (e) => {
-    setValue(e.target.value);
+    setCity(e.target.value);
   };
 
   const formHandler = (e) => {
     e.preventDefault();
-    getWeather(value);
+    dispatch(fetchWeather(getWeatherUrl({ city })));
     setValue('');
   };
 
@@ -31,6 +26,7 @@ const Search = () => {
           type="text"
           placeholder="Aktobe"
           onChange={inputHandler}
+          value={city}
         />
 
         <button className={styles.search__button} title="get weather" />

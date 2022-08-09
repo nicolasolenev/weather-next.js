@@ -33,7 +33,7 @@
     justify-content: space-between;
 
     &:hover {
-      .locations__city_delete-button {
+      .locations__city_delete_button {
         opacity: 1;
       }
     }
@@ -46,7 +46,7 @@
     background: transparent;
     cursor: pointer;
 
-    &_delete-button {
+    &_delete_button {
       width: 28px;
       height: 28px;
       border: transparent;
